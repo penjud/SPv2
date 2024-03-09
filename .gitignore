@@ -1,0 +1,6 @@
+.env
+# Ignore SSL certificate and key files
+server.csr
+server.key
+server.pass.key
+site_name.crt
