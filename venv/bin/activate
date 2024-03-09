@@ -34,6 +34,7 @@ deactivate () {
         unset -f deactivate
     fi
 }
+export DJANGO_SETTINGS_MODULE=betfair_bot.settings
 
 # unset irrelevant variables
 deactivate nondestructive
