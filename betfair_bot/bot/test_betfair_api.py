@@ -1,6 +1,7 @@
 import unittest
 from betfairlightweight import APIClient
 from betfairlightweight.exceptions import APIError
+from betfairlightweight.resources.accountresources import AccountFunds
 
 class BetfairAPITestCase(unittest.TestCase):
     def setUp(self):
@@ -8,7 +9,7 @@ class BetfairAPITestCase(unittest.TestCase):
             username='penjud',
             password='L33tHe@t2024',
             app_key='mECg2P2ohk92MLXy',
-            cert_files=('/home/tim/VScode Projects/Sickpuntv2/client-2048.crt', '/home/tim/VScode Projects/Sickpuntv2/client-2048.key')
+            cert_files=('/home/tim/VScode Projects/Sickpuntv2/betfair_bot/Certs/client-2048.crt', '/home/tim/VScode Projects/Sickpuntv2/betfair_bot/Certs/client-2048.key')
         )
     def test_login(self):
         try:
@@ -17,14 +18,14 @@ class BetfairAPITestCase(unittest.TestCase):
         except APIError as e:
             self.fail(f"Login failed: {e}")
 
-    def test_get_account_funds(self):
-        try:
-            self.client.login()
-            account_funds = self.client.account.get_account_funds()
-            self.assertIsInstance(account_funds, dict)
-            self.assertIn('availableToBetBalance', account_funds)
-        except APIError as e:
-            self.fail(f"Get account funds failed: {e}")
+def test_get_account_funds(self):
+    try:
+        self.client.login()
+        account_funds = self.client.account.get_account_funds()
+        self.assertIsInstance(account_funds, AccountFunds)
+        self.assertTrue(hasattr(account_funds, 'available_to_bet_balance'))
+    except APIError as e:
+        self.fail(f"Get account funds failed: {e}")
 
     def test_list_market_catalogue(self):
         try:
