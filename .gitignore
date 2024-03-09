@@ -1,6 +1,5 @@
 .env
 # Ignore SSL certificate and key files
-server.csr
-server.key
-server.pass.key
-site_name.crt
+client-2048.crt
+client-2048.key
+client-2048.csr
