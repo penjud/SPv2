@@ -1,0 +1,35 @@
+<!-- betting_history.html -->
+<h1>Betting History</h1>
+
+{% if betting_history %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Market</th>
+            <th scope="col">Selection</th>
+            <th scope="col">Stake</th>
+            <th scope="col">Odds</th>
+            <th scope="col">Result</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for bet in betting_history %}
+        <tr>
+            <td>{{ bet.market }}</td>
+            <td>{{ bet.selection }}</td>
+            <td>{{ bet.stake|floatformat:2 }}</td> <!-- Format the stake as a number with two decimal places -->
+            <td>{{ bet.odds|floatformat:2 }}</td> <!-- Format the odds as a number with two decimal places -->
+            <td>{{ bet.result }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No betting history to display.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No betting history to display.</p>
+{% endif %}
+
+<link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Link to your CSS file -->
