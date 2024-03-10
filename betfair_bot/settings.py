@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -122,7 +123,7 @@ STATIC_URL = '/static/'
 # This is the list of directories where Django will look for additional static files
 # besides the static directory of each app installed.
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # or os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 # Default primary key field type
