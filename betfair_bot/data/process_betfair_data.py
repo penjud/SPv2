@@ -2,7 +2,7 @@ import os
 import csv
 
 def process_betfair_data():
-    data_directory = 'data/betfair_data'
+    data_directory = 'betfair_bot/data/betfair_data'
     processed_data = []
 
     for filename in os.listdir(data_directory):
@@ -24,7 +24,7 @@ def process_betfair_data():
     # Save the processed data to a file or database
     # Example: Save to a JSON file
     import json
-    with open('data/processed_betfair_data.json', 'w') as file:
+    with open('betfair_bot/data/processed_betfair_data.json', 'w') as file:
         json.dump(processed_data, file)
 
 if __name__ == '__main__':
