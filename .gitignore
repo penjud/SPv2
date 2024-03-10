@@ -3,3 +3,5 @@
 client-2048.crt
 client-2048.key
 client-2048.csr
+betfair_bot/data/betfair_data/*
+betfair_bot/data/betfair_data/data.tar
