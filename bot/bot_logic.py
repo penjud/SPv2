@@ -3,12 +3,16 @@ from dotenv import load_dotenv
 from betfairlightweight import APIClient, filters
 
 from bot.bot_logic import ArbitrageBettingStrategy, EachWayBettingStrategy, LayBettingStrategy
+from bot.data_loader import DataLoader
 
 class BettingStrategy:
     def __init__(self, strategy_name, parameters=None):
         self.strategy_name = strategy_name
         self.parameters = parameters or {}
         self.client = self.initialize_api_client()
+        self.data_loader = DataLoader()
+        self.historical_data = self.data_loader.load_betfair_data()
+        self.preprocessed_data = self.data_loader.preprocess_data(self.historical_data)
 
     def initialize_api_client(self):
         load_dotenv()
@@ -64,6 +68,10 @@ class MartingaleStrategy(BettingStrategy):
 
     def execute(self, market_id):
         market_data = self.get_market_data(market_id)
+        market_data = self.preprocessed_data[self.preprocessed_data['market_id'] == market_id]
+        # Perform analysis or predictions based on the market data
+        # Example: Calculate the average implied probability for the market
+        average_implied_probability = market_data['implied_probability'].mean()
         if market_data:
             selection_id, odds = self.get_best_selection(market_data)
             if selection_id and odds:
@@ -125,6 +133,10 @@ class ValueBettingStrategy(BettingStrategy):
 
     def execute(self, market_id):
         market_data = self.get_market_data(market_id)
+        # Use the preprocessed historical data to calculate value bets
+        market_data = self.preprocessed_data[self.preprocessed_data['market_id'] == market_id]
+        # Calculate the expected value based on the market data and betting odds
+        expected_value = (market_data['implied_probability'] * (self.bet_size * self.odds - self.bet_size)).sum()
         if market_data:
             selection_id, odds = self.find_value_bet(market_data)
             if selection_id and odds:
