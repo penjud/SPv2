@@ -10,6 +10,7 @@ import logging
 from django.core.paginator import Paginator
 import betfair_bot
 from betfair_bot.models import Bet
+from bot.bot_logic import MartingaleStrategy, ValueBettingStrategy
 
 # Create a logger
 logger = logging.getLogger(__name__)
@@ -30,18 +31,27 @@ def home(request):
 def place_bet(request):
     if request.method == 'POST':
         form = PlaceBetForm(request.POST)
-        if form.is_valid():
+def place_bet(request):
+    market_id = request.POST.get('market_id')
+    strategy_name = request.POST.get('strategy')
+        
+    if strategy_name == 'martingale':
+            strategy = MartingaleStrategy(initial_bet=10, max_bet=100, max_consecutive_losses=5)
+    elif strategy_name == 'value_betting':
+            strategy = ValueBettingStrategy(initial_bet=10, max_bet=100, value_threshold=0.05)
+    else:
+            if form.is_valid():
             # Process the bet through your BettingStrategy logic
             # ...
-            messages.success(request, 'Your bet has been placed!')
+                messages.success(request, 'Your bet has been placed!')
             return redirect(reverse('betting_history'))
-        else:
+    
             # If the form is not valid, display it again with errors
-            return render(request, 'bot/place_bet.html', {'form': form})
-    else:
+    return render(request, 'bot/place_bet.html', {'form': form})
+    
         # Instantiate an empty form for GET request
-        form = PlaceBetForm()
-        return render(request, 'bot/place_bet.html', {'form': form})
+    form = PlaceBetForm()
+    return render(request, 'bot/place_bet.html', {'form': form})
 
 def market_data_view(request):
     # Use betfairlightweight to fetch market data
