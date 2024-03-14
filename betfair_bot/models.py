@@ -6,13 +6,14 @@ class Market(models.Model):
     name = models.CharField(max_length=255)
     start_time = models.DateTimeField()
     # Add more fields as necessary
-
+    class Meta:
+        app_label = 'betfair_bot'
     def __str__(self):
         return self.name
 
 class Bet(models.Model):
-    market = models.ForeignKey(Market, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)  # Optional, if tracking users
+    market = models.ForeignKey(Market, on_delete=models.CASCADE, related_name='bets')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='bets')
     selection = models.CharField(max_length=255)
     stake = models.DecimalField(max_digits=6, decimal_places=2)
     odds = models.DecimalField(max_digits=5, decimal_places=2)
@@ -31,6 +32,7 @@ class Bet(models.Model):
 
     class Meta:
         ordering = ['-market__start_time']
+        app_label = 'betfair_bot'
 
 from django.db import models
 
@@ -43,6 +45,75 @@ class Horse(models.Model):
     race_location = models.CharField(max_length=255)
     jockey = models.CharField(max_length=255)
     trainer = models.CharField(max_length=255)
+    market = models.ForeignKey(Market, on_delete=models.CASCADE, related_name='horses')
+
+    class Meta:
+        app_label = 'betfair_bot'
+
+    def calculate_chance(self):
+        # Example calculation - adjust weights and formula as needed
+        # These are placeholder calculations. You'll need to replace them with your own logic.
+        odds_weight = 0.4
+        form_weight = 0.3
+        conditions_weight = 0.2
+        location_weight = 0.05
+        jockey_trainer_weight = 0.05
+
+        # Example scoring logic. Replace with your actual scoring based on the horse's data.
+        score = (self.odds * odds_weight) + (self.get_form_score() * form_weight) + \
+            (self.get_conditions_score() * conditions_weight) + \
+            (self.get_location_score() * location_weight) + \
+            (self.get_jockey_trainer_score() * jockey_trainer_weight)
+
+        # Example conversion of score to percentage chance. Adjust as necessary.
+        percentage_chance = max(0, min(100, score))
+        return percentage_chance
+
+    def chance_color(self):
+        chance = self.calculate_chance()
+        if chance <= 25:
+            return 'darkred'
+        elif chance <= 50:
+            return 'lightred'
+        elif chance <= 65:
+            return 'orange'
+        elif chance <= 80:
+            return 'yellow'
+        elif chance <= 90:
+            return 'lightgreen'
+        else:
+            return 'darkgreen'
+
+    # Placeholder methods for converting various attributes to scores.
+    # These methods should contain logic to convert each attribute into a score.
+    def get_form_score(self):
+        """
+        Convert current form to a score.
+        
+        Assumes current_form is a string of recent finishes, e.g., '1-3-2'.
+        Lower scores are better (1 is best possible score).
+        """
+        form_scores = {
+            '1': 1,  # Win
+            '2': 2,  # Second place
+            '3': 3,  # Third place
+            # Define more as needed
+        }
+        max_score_per_race = max(form_scores.values()) + 1  # Beyond last defined score
+        
+        # Split the form string into individual performances
+        performances = self.current_form.split('-')
+        
+        # Calculate the score
+        score = 0
+        for i, performance in enumerate(performances, start=1):
+            # Convert each race finish to a score, unknown finishes get the worst score
+            race_score = form_scores.get(performance, max_score_per_race)
+            # Apply weighting by race recency (most recent race has a multiplier of 1)
+            weighted_score = race_score * (len(performances) - i + 1)
+            score += weighted_score
+        
+        return score
 
 def calculate_chance(self):
         # Example calculation - adjust weights and formula as needed
@@ -52,16 +123,15 @@ def calculate_chance(self):
         conditions_weight = 0.2
         location_weight = 0.05
         jockey_trainer_weight = 0.05
-        
+
         # Example scoring logic. Replace with your actual scoring based on the horse's data.
         score = (self.odds * odds_weight) + (self.get_form_score() * form_weight) + \
-                (self.get_conditions_score() * conditions_weight) + \
-                (self.get_location_score() * location_weight) + \
-                (self.get_jockey_trainer_score() * jockey_trainer_weight)
-        
+            (self.get_conditions_score() * conditions_weight) + \
+            (self.get_location_score() * location_weight) + \
+            (self.get_jockey_trainer_score() * jockey_trainer_weight)
+
         # Example conversion of score to percentage chance. Adjust as necessary.
-        percentage_chance = max(0, min(100, score))  # Ensure result is between 0 and 100
-        return percentage_chance
+        percentage_chance = max(0, min(100, score))  
 
 def chance_color(self):
         chance = self.calculate_chance()

@@ -35,18 +35,19 @@ def place_bet(request):
     market_id = request.POST.get('market_id')
     strategy_name = request.POST.get('strategy')
         
+    form = PlaceBetForm()
     if strategy_name == 'martingale':
-            strategy = MartingaleStrategy(initial_bet=10, max_bet=100, max_consecutive_losses=5)
+        strategy = MartingaleStrategy(initial_bet=10, max_bet=100, max_consecutive_losses=5)
     elif strategy_name == 'value_betting':
-            strategy = ValueBettingStrategy(initial_bet=10, max_bet=100, value_threshold=0.05)
+        strategy = ValueBettingStrategy(initial_bet=10, max_bet=100, value_threshold=0.05)
     else:
-            if form.is_valid():
+        if form.is_valid():
             # Process the bet through your BettingStrategy logic
             # ...
-                messages.success(request, 'Your bet has been placed!')
+            messages.success(request, 'Your bet has been placed!')
             return redirect(reverse('betting_history'))
-    
-            # If the form is not valid, display it again with errors
+
+        # If the form is not valid, display it again with errors
     return render(request, 'bot/place_bet.html', {'form': form})
     
         # Instantiate an empty form for GET request

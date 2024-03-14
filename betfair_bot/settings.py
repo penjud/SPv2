@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bot'
+    'betfair_bot',
+    'betfair_bot.models',
+    'betfair_bot.apps.BetfairBotConfig',
 ]
 
 MIDDLEWARE = [

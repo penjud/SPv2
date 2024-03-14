@@ -1,6 +1,7 @@
 from django.apps import AppConfig
 
+class BetfairBotConfig(AppConfig):
+    name = 'betfair_bot'
+    # Optional verbose name
+    verbose_name = 'Betfair Bot'
 
-class BotConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'bot'
