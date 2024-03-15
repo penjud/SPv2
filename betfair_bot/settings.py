@@ -44,8 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'betfair_bot',
-    'betfair_bot.models',
-    'betfair_bot.apps.BetfairBotConfig',
 ]
 
 MIDDLEWARE = [
@@ -63,7 +61,7 @@ ROOT_URLCONF = 'betfair_bot.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'bot/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

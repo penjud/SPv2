@@ -86,7 +86,7 @@ def market_data_view(request):
     # Render the template with market data
     return render(request, 'bot/market_data.html', {'market_data': market_data})
 
-def betting_history_view(request):
+def betting_history (request):
     bets_list = Bet.objects.all().order_by('-id')
     paginator = Paginator(bets_list, 10)  # Show 10 bets per page
 

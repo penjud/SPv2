@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from betfair_bot import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home, name='home'),
+    path('place-bet/', views.place_bet, name='place_bet'),
+    path('betting-history/', views.betting_history, name='betting_history'),
 ]
