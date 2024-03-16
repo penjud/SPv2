@@ -21,6 +21,7 @@ logger = logging.getLogger(__name__)
 class PlaceBetForm(forms.Form):
     bet_amount = forms.DecimalField(min_value=0.01)
     selected_horse = forms.ChoiceField(choices=[('Horse 1', 'Horse 1'), ('Horse 2', 'Horse 2'), ('Horse 3', 'Horse 3')])
+
 @login_required
 def home(request):
     # Context to pass to the template
@@ -29,6 +30,7 @@ def home(request):
         'features': ['Automatic betting', 'Real-time statistics', 'User-friendly interface'],
     }
     return render(request, 'bot/home.html', context)
+
 @login_required
 def place_bet(request):
     if request.method == 'POST':
@@ -49,6 +51,7 @@ def place_bet(request):
     else:
         form = PlaceBetForm()
     return render(request, 'betfair_bot/place_bet.html', {'form': form})
+
 @login_required
 def market_data_view(request):
     # Use betfairlightweight to fetch market data
@@ -81,6 +84,7 @@ def market_data_view(request):
 
     # Render the template with market data
     return render(request, 'bot/market_data.html', {'market_data': market_data})
+
 @login_required
 def betting_history (request):
     bets_list = Bet.objects.all().order_by('-id')
@@ -91,6 +95,7 @@ def betting_history (request):
 
     context = {'page_obj': page_obj}
     return render(request, 'bot/betting_history.html', context)
+
 @login_required
 def performance_metrics_view(request):
     # Assuming Bet model has 'stake', 'won' (boolean), and 'payout' fields
@@ -115,6 +120,7 @@ def performance_metrics_view(request):
 
     # Render the template with performance metrics
     return render(request, 'bot/performance_metrics.html', {'performance_metrics': performance_metrics})
+
 @login_required
 def get_conditions_score(self):
         """
@@ -135,6 +141,7 @@ def get_conditions_score(self):
         # For simplicity, we directly return the score associated with the current track conditions
         # In a more sophisticated model, you might adjust these scores based on detailed performance data
         return conditions_scores.get(self.track_conditions, 50)  # Default score if condition is unknown
+
 @login_required
 def get_location_score(self):
         """
@@ -156,6 +163,7 @@ def get_location_score(self):
 
         jockey = models.CharField(max_length=255)
         trainer = models.CharField(max_length=255)
+
 @login_required
 def get_jockey_trainer_score(self):
         """

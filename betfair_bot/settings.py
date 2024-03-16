@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 import environ
+from cryptography.fernet import Fernet
 
 # Initialize environment variables
 env = environ.Env()
@@ -160,3 +161,5 @@ LOGGING = {
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+ENCRYPTION_KEY = Fernet.generate_key().decode()

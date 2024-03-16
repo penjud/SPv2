@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 # Create yfrom django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CustomUserCreationForm
+from .models import UserProfile
 
 def register(request):
     if request.method == 'POST':
@@ -15,9 +16,10 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            user.profile.betfair_username = form.cleaned_data['betfair_username']
-            user.profile.betfair_password = form.cleaned_data['betfair_password']
-            user.profile.betfair_api_key = form.cleaned_data['betfair_api_key']
+            user.refresh_from_db()
+            user.userprofile.betfair_username = form.cleaned_data['betfair_username']
+            user.userprofile.betfair_password = form.cleaned_data['betfair_password']
+            user.userprofile.betfair_api_key = form.cleaned_data['betfair_api_key']
             user.save()
             return redirect('login')
     else:
