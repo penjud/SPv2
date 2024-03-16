@@ -55,14 +55,14 @@ def testing_view(request):
                 'form': form,
                 'historical_data': historical_data,
             }
-            return render(request, 'betfair_bot/testing_results.html', context)
+            return render(request, 'betfair_bot/templates/testing_results.html', context)
     else:
         form = TestingForm()
     
     context = {
         'form': form,
     }
-    return render(request, 'betfair_bot/testing.html', context)
+    return render(request, 'betfair_bot/templates/testing.html', context)
 
 @login_required
 def place_bet(request):
