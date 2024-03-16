@@ -14,6 +14,7 @@ from betfair_bot.forms import PlaceBetForm
 from bot.bot_logic import MartingaleStrategy, ValueBettingStrategy
 from betfair_bot.forms import TestingForm
 from betfair_bot.models import BetfairData
+from .forms import TestingForm
 
 # Create a logger
 logger = logging.getLogger(__name__)
@@ -55,14 +56,14 @@ def testing_view(request):
                 'form': form,
                 'historical_data': historical_data,
             }
-            return render(request, 'betfair_bot/templates/testing_results.html', context)
+            return render(request, 'betfair_bot/templates/bot/testing.html', context)
     else:
         form = TestingForm()
     
     context = {
         'form': form,
     }
-    return render(request, 'betfair_bot/templates/testing.html', context)
+    return render(request, 'betfair_bot/templates/bot/testing.html', {'form': form})
 
 @login_required
 def place_bet(request):

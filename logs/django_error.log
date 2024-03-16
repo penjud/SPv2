@@ -336,3 +336,289 @@ Traceback (most recent call last):
     raise TemplateDoesNotExist(template_name, chain=chain)
 django.template.exceptions.TemplateDoesNotExist: betfair_bot/testing.html
 "GET /testing/ HTTP/1.1" 500 92654
+Internal Server Error: /testing/
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 65, in testing_view
+    return render(request, 'betfair_bot/templates/testing.html', context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: betfair_bot/templates/testing.html
+"GET /testing/ HTTP/1.1" 500 92864
+Internal Server Error: /testing/
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 65, in testing_view
+    return render(request, 'templates/testing.html', context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: templates/testing.html
+"GET /testing/ HTTP/1.1" 500 92612
+Internal Server Error: /testing/
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 65, in testing_view
+    return render(request, 'betfair_bot/templates/bot/testing.html', context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: betfair_bot/templates/bot/testing.html
+"GET /testing/ HTTP/1.1" 500 92940
+Internal Server Error: /testing/
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 65, in testing_view
+    return render(request, 'betfair_bot/templates/bot/testing.html', context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: betfair_bot/templates/bot/testing.html
+"GET /testing/ HTTP/1.1" 500 92940
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 33, in home
+    return render(request, 'bot/home.html', context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'betfair_bot/testing' not found. 'betfair_bot/testing' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 153148
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 33, in home
+    return render(request, 'bot/home.html', context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 1000, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 851, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'betfair_bot/testing' not found. 'betfair_bot/testing' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 153305
+Internal Server Error: /testing/
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 65, in testing_view
+    return render(request, 'betfair_bot/templates/bot/testing.html', context)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: betfair_bot/templates/bot/testing.html
+"GET /testing/ HTTP/1.1" 500 92940
+Internal Server Error: /testing/
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 45, in testing_view
+    historical_data = BetfairData.objects.filter(
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1613, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1645, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1495, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1307, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1772, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'barrier_number' into field. Choices are: age_restrictions, class_restrictions, form_barrier, form_class, form_distance, form_jockey, form_margin, form_meeting_date, form_name, form_other_runners, form_position, form_price, form_time, form_track, form_track_condition, form_weight, horse_age, horse_barrier, horse_claim, horse_jockey, horse_last10, horse_name, horse_number, horse_prize_money, horse_record, horse_record_dead, horse_record_distance, horse_record_fast, horse_record_first_up, horse_record_good, horse_record_heavy, horse_record_jumps, horse_record_second_up, horse_record_slow, horse_record_track, horse_record_track_distance, horse_sex, horse_trainer, horse_weight, id, meeting_date, race_number, race_prizemoney, start_time, track, weight_restrictions
+"POST /testing/ HTTP/1.1" 500 130345
+Internal Server Error: /testing/
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 45, in testing_view
+    historical_data = BetfairData.objects.filter(
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1613, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1645, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1495, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1307, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1772, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'barrier_number' into field. Choices are: age_restrictions, class_restrictions, form_barrier, form_class, form_distance, form_jockey, form_margin, form_meeting_date, form_name, form_other_runners, form_position, form_price, form_time, form_track, form_track_condition, form_weight, horse_age, horse_barrier, horse_claim, horse_jockey, horse_last10, horse_name, horse_number, horse_prize_money, horse_record, horse_record_dead, horse_record_distance, horse_record_fast, horse_record_first_up, horse_record_good, horse_record_heavy, horse_record_jumps, horse_record_second_up, horse_record_slow, horse_record_track, horse_record_track_distance, horse_sex, horse_trainer, horse_weight, id, meeting_date, race_number, race_prizemoney, start_time, track, weight_restrictions
+"POST /testing/ HTTP/1.1" 500 130345
+Internal Server Error: /testing/
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 40, in testing_view
+    barrier_number = form.cleaned_data['barrier_number']
+KeyError: 'barrier_number'
+"POST /testing/ HTTP/1.1" 500 77519
+Internal Server Error: /testing/
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 66, in testing_view
+    return render(request, 'betfair_bot/testing.html', {'form': form})
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: betfair_bot/testing.html
+"GET /testing/ HTTP/1.1" 500 92680
+Internal Server Error: /testing/
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 66, in testing_view
+    return render(request, 'betfair_bot/templates/bot/testing.html', {'form': form})
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: betfair_bot/templates/bot/testing.html
+"GET /testing/ HTTP/1.1" 500 92974
