@@ -13,8 +13,10 @@ class UserProfile(models.Model):
 
     def save(self, *args, **kwargs):
         f = Fernet(settings.ENCRYPTION_KEY)
-        self.betfair_password = f.encrypt(self.betfair_password.encode())
-        self.betfair_api_key = f.encrypt(self.betfair_api_key.encode())
+        if isinstance(self.betfair_password, str):
+            self.betfair_password = f.encrypt(self.betfair_password.encode())
+        if isinstance(self.betfair_api_key, str):
+            self.betfair_api_key = f.encrypt(self.betfair_api_key.encode())
         super().save(*args, **kwargs)
 
     def decrypt_password(self):
