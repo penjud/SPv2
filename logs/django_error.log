@@ -622,3 +622,21 @@ Traceback (most recent call last):
     raise TemplateDoesNotExist(template_name, chain=chain)
 django.template.exceptions.TemplateDoesNotExist: betfair_bot/templates/bot/testing.html
 "GET /testing/ HTTP/1.1" 500 92974
+Internal Server Error: /testing/
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 66, in testing_view
+    return render(request, 'betfair_bot/templates/bot/testing.html', {'form': form})
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: betfair_bot/templates/bot/testing.html
+"GET /testing/ HTTP/1.1" 500 92974

@@ -10,9 +10,7 @@ import logging
 from django.core.paginator import Paginator
 import betfair_bot
 from betfair_bot.models import Bet
-from betfair_bot.forms import PlaceBetForm
 from bot.bot_logic import MartingaleStrategy, ValueBettingStrategy
-from betfair_bot.forms import TestingForm
 from betfair_bot.models import BetfairData
 from .forms import TestingForm
 
@@ -56,7 +54,7 @@ def testing_view(request):
                 'form': form,
                 'historical_data': historical_data,
             }
-            return render(request, 'betfair_bot/templates/bot/testing.html', context)
+            return render(request, 'testing.html', context)
     else:
         form = TestingForm()
     
