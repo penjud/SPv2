@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Your Project{% endblock %}</title>
+    {% block stylesheets %}
+    <!-- Add your CSS stylesheets here -->
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <!-- Add your header content here -->
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Main content goes here -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <!-- Add your footer content here -->
+    </footer>
+
+    {% block scripts %}
+    <!-- Add your JavaScript scripts here -->
+    {% endblock %}
+</body>
+</html>
