@@ -1,6 +1,8 @@
 from django.core.management.base import BaseCommand
 from betfair_bot.models import BetfairData
 import csv
+import re
+from datetime import datetime
 
 class Command(BaseCommand):
     help = 'Loads historical data from a CSV file into the BetfairData model'
@@ -15,11 +17,16 @@ class Command(BaseCommand):
             reader = csv.DictReader(csvfile)
 
             for row in reader:
+                # Extract horse prize money using regular expression
+                horse_prize_money_str = row['horse prize money']
+                numbers = re.findall(r'[\d.]+', horse_prize_money_str)
+                horse_prize_money = float(numbers[0]) if numbers else None
+
                 BetfairData.objects.create(
-                    meeting_date=row['meeting date'],
+                    meeting_date=datetime.strptime(row['meeting date'], '%d/%m/%Y %I:%M:%S %p').strftime('%Y-%m-%d'),
                     track=row['track'],
                     race_number=int(row['race number']),
-                    start_time=row['start time'],  # This might need parsing to a time object if not in the correct format
+                    start_time=datetime.strptime(row['start time'], '%H:%M').strftime('%H:%M') if row['start time'] else None,
                     age_restrictions=row['age restrictions'],
                     class_restrictions=row['class restrictions'],
                     weight_restrictions=int(row['weight restrictions']) if row['weight restrictions'].isdigit() else None,
@@ -46,19 +53,19 @@ class Command(BaseCommand):
                     horse_record_jumps=row['horse record jumps'],
                     horse_record_first_up=row['horse record first up'],
                     horse_record_second_up=row['horse record second up'],
-                    horse_prize_money=float(row['horse prize money']) if row['horse prize money'] else None,
+                    horse_prize_money=horse_prize_money,
                     form_barrier=int(row['form barrier']) if row['form barrier'].isdigit() else None,
                     form_class=row['form class'],
                     form_distance=int(row['form distance']) if row['form distance'].isdigit() else None,
                     form_jockey=row['form jockey'],
                     form_margin=float(row['form margin']) if row['form margin'] else None,
-                    form_meeting_date=row['form meeting date'],
+                    form_meeting_date=datetime.strptime(row['form meeting date'], '%d/%m/%y').strftime('%Y-%m-%d') if row['form meeting date'] else None,
                     form_name=row['form name'],
                     form_other_runners=row['form other runners'],
                     form_position=int(row['form position']) if row['form position'].isdigit() else None,
                     form_price=float(row['form price']) if row['form price'] else None,
-                    form_time=row['form time'],  # This might need parsing to a time object if not in the correct format
+                    form_time=datetime.strptime(row['form time'], '%M:%S.%f').strftime('%H:%M:%S.%f') if row['form time'] else None,  # This might need parsing to a time object if not in the correct format
                     form_track=row['form track'],
                     form_track_condition=row['form track condition'],
                     form_weight=float(row['form weight']) if row['form weight'] else None
-)
+                )
