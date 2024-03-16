@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib import messages
 from django import forms
+from django.contrib.auth.decorators import login_required
 from betfairlightweight import APIClient
 from betfairlightweight.filters import market_filter
 from betfairlightweight.exceptions import APIError
@@ -10,6 +11,7 @@ import logging
 from django.core.paginator import Paginator
 import betfair_bot
 from betfair_bot.models import Bet
+from betfair_bot.forms import PlaceBetForm
 from bot.bot_logic import MartingaleStrategy, ValueBettingStrategy
 
 # Create a logger
@@ -19,7 +21,7 @@ logger = logging.getLogger(__name__)
 class PlaceBetForm(forms.Form):
     bet_amount = forms.DecimalField(min_value=0.01)
     selected_horse = forms.ChoiceField(choices=[('Horse 1', 'Horse 1'), ('Horse 2', 'Horse 2'), ('Horse 3', 'Horse 3')])
-
+@login_required
 def home(request):
     # Context to pass to the template
     context = {
@@ -27,33 +29,27 @@ def home(request):
         'features': ['Automatic betting', 'Real-time statistics', 'User-friendly interface'],
     }
     return render(request, 'bot/home.html', context)
-
+@login_required
 def place_bet(request):
     if request.method == 'POST':
         form = PlaceBetForm(request.POST)
-def place_bet(request):
-    market_id = request.POST.get('market_id')
-    strategy_name = request.POST.get('strategy')
-        
-    form = PlaceBetForm()
-    if strategy_name == 'martingale':
-        strategy = MartingaleStrategy(initial_bet=10, max_bet=100, max_consecutive_losses=5)
-    elif strategy_name == 'value_betting':
-        strategy = ValueBettingStrategy(initial_bet=10, max_bet=100, value_threshold=0.05)
-    else:
         if form.is_valid():
-            # Process the bet through your BettingStrategy logic
+            market_id = form.cleaned_data['market_id']
+            strategy_name = form.cleaned_data['strategy']
+            
+            betfair_username = request.user.profile.betfair_username
+            betfair_password = request.user.profile.betfair_password
+            betfair_api_key = request.user.profile.betfair_api_key
+            
+            # Use the user's Betfair API details to place the bet
             # ...
+            
             messages.success(request, 'Your bet has been placed!')
-            return redirect(reverse('betting_history'))
-
-        # If the form is not valid, display it again with errors
-    return render(request, 'bot/place_bet.html', {'form': form})
-    
-        # Instantiate an empty form for GET request
-    form = PlaceBetForm()
-    return render(request, 'bot/place_bet.html', {'form': form})
-
+            return redirect('betting_history')
+    else:
+        form = PlaceBetForm()
+    return render(request, 'betfair_bot/place_bet.html', {'form': form})
+@login_required
 def market_data_view(request):
     # Use betfairlightweight to fetch market data
     try:
@@ -85,7 +81,7 @@ def market_data_view(request):
 
     # Render the template with market data
     return render(request, 'bot/market_data.html', {'market_data': market_data})
-
+@login_required
 def betting_history (request):
     bets_list = Bet.objects.all().order_by('-id')
     paginator = Paginator(bets_list, 10)  # Show 10 bets per page
@@ -95,7 +91,7 @@ def betting_history (request):
 
     context = {'page_obj': page_obj}
     return render(request, 'bot/betting_history.html', context)
-
+@login_required
 def performance_metrics_view(request):
     # Assuming Bet model has 'stake', 'won' (boolean), and 'payout' fields
     bets = betfair_bot.objects.all()
@@ -119,7 +115,7 @@ def performance_metrics_view(request):
 
     # Render the template with performance metrics
     return render(request, 'bot/performance_metrics.html', {'performance_metrics': performance_metrics})
-
+@login_required
 def get_conditions_score(self):
         """
         Convert track conditions to a score based on the horse's performance tendency.
@@ -139,7 +135,7 @@ def get_conditions_score(self):
         # For simplicity, we directly return the score associated with the current track conditions
         # In a more sophisticated model, you might adjust these scores based on detailed performance data
         return conditions_scores.get(self.track_conditions, 50)  # Default score if condition is unknown
-
+@login_required
 def get_location_score(self):
         """
         Convert race location to a score based on the horse's preference or performance history.
@@ -160,7 +156,7 @@ def get_location_score(self):
 
         jockey = models.CharField(max_length=255)
         trainer = models.CharField(max_length=255)
-
+@login_required
 def get_jockey_trainer_score(self):
         """
         Convert jockey and trainer information to a score based on their historical performance and influence.
