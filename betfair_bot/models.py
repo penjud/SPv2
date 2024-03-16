@@ -266,11 +266,56 @@ def get_track_rating(self):
 def __str__(self):
         return f"{self.name} ({self.location}) - {self.track_type}"
 
+from django.db import models
+
 class BetfairData(models.Model):
-    race_name = models.CharField(max_length=100)
+    meeting_date = models.DateField()  # Assuming 'meeting date' is always in date format
+    track = models.CharField(max_length=100)
+    race_number = models.IntegerField()
+    start_time = models.TimeField(null=True, blank=True)  # Assuming 'start time' is in time format, nullable if time is not always provided
+    age_restrictions = models.CharField(max_length=50)
+    class_restrictions = models.CharField(max_length=50)
+    weight_restrictions = models.IntegerField()  # Assuming this is an integer field
+    race_prizemoney = models.TextField()  # Storing as text due to the mixed content
     horse_name = models.CharField(max_length=100)
-    barrier_number = models.IntegerField()
-    track_conditions = models.CharField(max_length=20)
-    odds = models.FloatField()
+    horse_age = models.IntegerField()
+    horse_sex = models.CharField(max_length=10)
+    horse_number = models.IntegerField(null=True, blank=True)  # Nullable if not always provided
+    horse_jockey = models.CharField(max_length=100)
+    horse_barrier = models.IntegerField(null=True, blank=True)  # Nullable if not always provided
+    horse_trainer = models.CharField(max_length=100)
+    horse_weight = models.FloatField(null=True, blank=True)  # Assuming 'horse weight' is a float, nullable if not always provided
+    horse_claim = models.FloatField(null=True, blank=True)  # Assuming 'horse claim' is a float, nullable if not always provided
+    horse_last10 = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    horse_record = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    horse_record_distance = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    horse_record_track = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    horse_record_track_distance = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    horse_record_fast = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    horse_record_good = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    horse_record_dead = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    horse_record_slow = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    horse_record_heavy = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    horse_record_jumps = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    horse_record_first_up = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    horse_record_second_up = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    horse_prize_money = models.FloatField(null=True, blank=True)  # Assuming 'horse prize money' is a float, nullable if not always provided
+    form_barrier = models.IntegerField(null=True, blank=True)  # Nullable if not always provided
+    form_class = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    form_distance = models.IntegerField(null=True, blank=True)  # Nullable if not always provided
+    form_jockey = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    form_margin = models.FloatField(null=True, blank=True)  # Assuming 'form margin' is a float, nullable if not always provided
+    form_meeting_date = models.DateField(null=True, blank=True)  # Nullable if not always provided
+    form_name = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    form_other_runners = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    form_position = models.IntegerField(null=True, blank=True)  # Nullable if not always provided
+    form_price = models.FloatField(null=True, blank=True)  # Assuming 'form price' is a float, nullable if not always provided
+    form_time = models.TimeField(null=True, blank=True)  # Assuming 'form time' is in time format, nullable if time is not always provided
+    form_track = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    form_track_condition = models.CharField(max_length=100, null=True, blank=True)  # Nullable if not always provided
+    form_weight = models.FloatField(null=True, blank=True)  # Assuming 'form weight' is a float, nullable if not always provided
+
+    # Ensure to replace 'null=True, blank=True' with 'null=True' for fields that should not be blank but can be null.
+
     # Add more fields as needed
 
