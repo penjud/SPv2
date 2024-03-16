@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Testing Results</h2>
+  <p>Selected Criteria:</p>
+  <ul>
+    <li>Barrier Number: {{ form.barrier_number.value }}</li>
+    <li>Track Conditions: {{ form.track_conditions.value }}</li>
+    <li>Odds Range: {{ form.odds_range.value }}</li>
+  </ul>
+  
+  <h3>Historical Data</h3>
+  {% if historical_data %}
+    <ul>
+      {% for data in historical_data %}
+        <li>{{ data.race_name }} - {{ data.horse_name }} - {{ data.odds }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No historical data found for the selected criteria.</p>
+  {% endif %}
+{% endblock %}

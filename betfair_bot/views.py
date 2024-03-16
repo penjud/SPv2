@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse
 from django.contrib import messages
 from django import forms
 from django.contrib.auth.decorators import login_required
@@ -13,6 +12,8 @@ import betfair_bot
 from betfair_bot.models import Bet
 from betfair_bot.forms import PlaceBetForm
 from bot.bot_logic import MartingaleStrategy, ValueBettingStrategy
+from betfair_bot.forms import TestingForm
+from betfair_bot.models import BetfairData
 
 # Create a logger
 logger = logging.getLogger(__name__)
@@ -30,6 +31,38 @@ def home(request):
         'features': ['Automatic betting', 'Real-time statistics', 'User-friendly interface'],
     }
     return render(request, 'bot/home.html', context)
+
+@login_required
+def testing_view(request):
+    if request.method == 'POST':
+        form = TestingForm(request.POST)
+        if form.is_valid():
+            barrier_number = form.cleaned_data['barrier_number']
+            track_conditions = form.cleaned_data['track_conditions']
+            odds_range = form.cleaned_data['odds_range']
+            
+            # Query the historical data based on the selected criteria
+            historical_data = BetfairData.objects.filter(
+                barrier_number=barrier_number,
+                track_conditions=track_conditions,
+                odds__range=odds_range
+            )
+
+            # Perform testing logic here
+            # ...
+
+            context = {
+                'form': form,
+                'historical_data': historical_data,
+            }
+            return render(request, 'betfair_bot/testing_results.html', context)
+    else:
+        form = TestingForm()
+    
+    context = {
+        'form': form,
+    }
+    return render(request, 'betfair_bot/testing.html', context)
 
 @login_required
 def place_bet(request):

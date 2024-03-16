@@ -10,3 +10,9 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2', 'betfair_username', 'betfair_password', 'betfair_api_key')
+        labels = {
+            'username': 'Username',
+        }
+        help_texts = {
+            'username': None,
+        }

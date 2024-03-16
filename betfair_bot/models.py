@@ -266,3 +266,11 @@ def get_track_rating(self):
 def __str__(self):
         return f"{self.name} ({self.location}) - {self.track_type}"
 
+class BetfairData(models.Model):
+    race_name = models.CharField(max_length=100)
+    horse_name = models.CharField(max_length=100)
+    barrier_number = models.IntegerField()
+    track_conditions = models.CharField(max_length=20)
+    odds = models.FloatField()
+    # Add more fields as needed
+
