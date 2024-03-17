@@ -7,4 +7,18 @@
     {{ form.as_p }}
     <button type="submit">Test</button>
   </form>
+
+  <h3>Historical Data</h3>
+  {% if historical_data %}
+    <!-- Display historical data -->
+  {% else %}
+    <p>No historical data found.</p>
+  {% endif %}
+
+  <h3>Market Data</h3>
+  {% if market_data %}
+    <!-- Display market data -->
+  {% else %}
+    <p>No market data found.</p>
+  {% endif %}
 {% endblock %}

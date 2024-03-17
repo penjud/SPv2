@@ -10,12 +10,14 @@ import logging
 from django.core.paginator import Paginator
 from betfair_bot.models import Bet
 from betfair_bot.forms import PlaceBetForm, TestingForm
-from betfair_bot.models import BetfairData
 from django.conf import settings
 from betfairlightweight.exceptions import APIError, PasswordError, AppKeyError
 from betfairlightweight.filters import market_filter
 from betfair_bot.betfair_api import BetfairAPI
-
+from django.http import request
+from betfair_bot.models import BetfairData
+from django import forms
+from .forms import TestingForm  # Make sure this is the correct import for your form
 
 # Create a logger
 logger = logging.getLogger(__name__)
@@ -80,25 +82,48 @@ def home(request):
 
 @login_required
 def testing_view(request):
-    form = TestingForm(request.POST or None)
-    historical_data = BetfairData.objects.none()
+    if request.method == 'POST':
+        form = TestingForm(request.POST)
+        if form.is_valid():
+            country_code = form.cleaned_data.get('country_code')
+            horse_barrier = form.cleaned_data.get('horse_barrier')
+            meeting_date = form.cleaned_data.get('meeting_date')
 
-    if request.method == 'POST' and form.is_valid():
-        horse_barrier = form.cleaned_data['horse_barrier']
-        track_conditions = form.cleaned_data['track_conditions']
-        odds_range = form.cleaned_data['odds_range']
+            historical_data = BetfairData.objects.filter(
+                country_code=country_code,
+                barrier_number=horse_barrier,  # Assuming this is the correct field name
+                meeting_date=meeting_date
+            )
 
-        historical_data = BetfairData.objects.filter(
-            barrier_number=horse_barrier,  # Fixed the variable name here
-            track_conditions=track_conditions,
-            odds__range=odds_range
-        )
+            context = {
+                'form': form,
+                'historical_data': historical_data,
+            }
 
-    context = {
-        'form': form,
-        'historical_data': historical_data,
-    }
-    return render(request, 'bot/testing.html', context)
+            logger.debug(f"Filtering with country_code={country_code}, horse_barrier={horse_barrier}, meeting_date={meeting_date}")
+            return render(request, 'bot/testing.html', context)
+    else:
+        form = TestingForm()  # or PlaceBetForm() based on what you want to display initially
+
+    # If it's a GET request or the form is not valid, render the page with the empty or unvalidated form
+    return render(request, 'bot/testing.html', {'form': form})
+
+
+def filter_data(request, form, historical_data):
+    # Implement the logic for filtering data
+    pass
+
+def my_function(request, form, historical_data):
+    return filter_data(request, form, historical_data)
+
+def my_view(request):
+    form = PlaceBetForm()  # Define the "form" variable
+    historical_data = None  # Define the "historical_data" variable
+    return render(request, 'bot/testing.html', {'form': form})
+
+form = PlaceBetForm()  # Define the "form" variable
+historical_data = None  # Define the "historical_data" variable
+my_function(request, form, historical_data)
 
 @login_required
 def place_bet(request):
@@ -107,7 +132,6 @@ def place_bet(request):
         if form.is_valid():
             market_id = form.cleaned_data['market_id']
             strategy_name = form.cleaned_data['strategy']
-            
             betfair_username = request.user.profile.betfair_username
             betfair_password = request.user.profile.betfair_password
             betfair_api_key = request.user.profile.betfair_api_key
