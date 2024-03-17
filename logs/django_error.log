@@ -1159,3 +1159,218 @@ Traceback (most recent call last):
     api_client = APIClient(
 TypeError: APIClient() takes no arguments
 "GET / HTTP/1.1" 500 76345
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/http/request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/messages/middleware.py", line 12, in process_request
+    request._messages = default_storage(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/messages/storage/__init__.py", line 12, in default_storage
+    return import_string(settings.MESSAGE_STORAGE)(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/messages/storage/fallback.py", line 16, in __init__
+    self.storages = [
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/messages/storage/fallback.py", line 17, in <listcomp>
+    storage_class(*args, **kwargs) for storage_class in self.storage_classes
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/messages/storage/cookie.py", line 92, in __init__
+    self.signer = signing.get_cookie_signer(salt=self.key_salt)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/signing.py", line 114, in get_cookie_signer
+    key=_cookie_signer_key(settings.SECRET_KEY),
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/conf/__init__.py", line 98, in __getattr__
+    raise ImproperlyConfigured("The SECRET_KEY setting must not be empty.")
+django.core.exceptions.ImproperlyConfigured: The SECRET_KEY setting must not be empty.
+"GET / HTTP/1.1" 500 145
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/messages/middleware.py", line 12, in process_request
+    request._messages = default_storage(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/messages/storage/__init__.py", line 12, in default_storage
+    return import_string(settings.MESSAGE_STORAGE)(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/messages/storage/fallback.py", line 16, in __init__
+    self.storages = [
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/messages/storage/fallback.py", line 17, in <listcomp>
+    storage_class(*args, **kwargs) for storage_class in self.storage_classes
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/messages/storage/cookie.py", line 92, in __init__
+    self.signer = signing.get_cookie_signer(salt=self.key_salt)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/signing.py", line 114, in get_cookie_signer
+    key=_cookie_signer_key(settings.SECRET_KEY),
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/conf/__init__.py", line 98, in __getattr__
+    raise ImproperlyConfigured("The SECRET_KEY setting must not be empty.")
+django.core.exceptions.ImproperlyConfigured: The SECRET_KEY setting must not be empty.
+"GET / HTTP/1.1" 500 145
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 21, in home
+    api_client = APIClient(
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/apiclient.py", line 34, in __init__
+    super(APIClient, self).__init__(
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/baseclient.py", line 94, in __init__
+    self.get_app_key()
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/baseclient.py", line 126, in get_app_key
+    raise AppKeyError(self.username)
+betfairlightweight.exceptions.AppKeyError: AppKey not found in .bashprofile for penjud, add or pass to APIClient
+"GET / HTTP/1.1" 500 145
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 22, in home
+    api_client = APIClient(
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/apiclient.py", line 34, in __init__
+    super(APIClient, self).__init__(
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/baseclient.py", line 93, in __init__
+    self.get_password()
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/baseclient.py", line 114, in get_password
+    raise PasswordError(self.username)
+betfairlightweight.exceptions.PasswordError: Password not found in .bashprofile for penjud, add or pass to APIClient
+"GET / HTTP/1.1" 500 145
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 35, in home
+    market_filter = logging.Filter.market_filter(text_query='horse racing')
+AttributeError: type object 'Filter' has no attribute 'market_filter'
+"GET / HTTP/1.1" 500 145
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 37, in home
+    market_filter = logging.Filter.market_filter(text_query='horse racing')
+AttributeError: type object 'Filter' has no attribute 'market_filter'
+"GET / HTTP/1.1" 500 145
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 24, in home
+    api_client = betfairlightweight.APIClient(
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/apiclient.py", line 34, in __init__
+    super(APIClient, self).__init__(
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/baseclient.py", line 93, in __init__
+    self.get_password()
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/baseclient.py", line 114, in get_password
+    raise PasswordError(self.username)
+betfairlightweight.exceptions.PasswordError: Password not found in .bashprofile for penjud, add or pass to APIClient
+"GET / HTTP/1.1" 500 145
+Internal Server Error: /testing/
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 91, in testing_view
+    historical_data = BetfairData.objects.filter(
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1613, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1645, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1495, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1307, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1772, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'barrier_number' into field. Choices are: age_restrictions, class_restrictions, form_barrier, form_class, form_distance, form_jockey, form_margin, form_meeting_date, form_name, form_other_runners, form_position, form_price, form_time, form_track, form_track_condition, form_weight, horse_age, horse_barrier, horse_claim, horse_jockey, horse_last10, horse_name, horse_number, horse_prize_money, horse_record, horse_record_dead, horse_record_distance, horse_record_fast, horse_record_first_up, horse_record_good, horse_record_heavy, horse_record_jumps, horse_record_second_up, horse_record_slow, horse_record_track, horse_record_track_distance, horse_sex, horse_trainer, horse_weight, id, meeting_date, race_number, race_prizemoney, start_time, track, weight_restrictions
+"POST /testing/ HTTP/1.1" 500 145
+Internal Server Error: /testing/
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 91, in testing_view
+    historical_data = BetfairData.objects.filter(
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1613, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1645, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1495, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1307, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/db/models/sql/query.py", line 1772, in names_to_path
+    raise FieldError(
+django.core.exceptions.FieldError: Cannot resolve keyword 'barrier_number' into field. Choices are: age_restrictions, class_restrictions, form_barrier, form_class, form_distance, form_jockey, form_margin, form_meeting_date, form_name, form_other_runners, form_position, form_price, form_time, form_track, form_track_condition, form_weight, horse_age, horse_barrier, horse_claim, horse_jockey, horse_last10, horse_name, horse_number, horse_prize_money, horse_record, horse_record_dead, horse_record_distance, horse_record_fast, horse_record_first_up, horse_record_good, horse_record_heavy, horse_record_jumps, horse_record_second_up, horse_record_slow, horse_record_track, horse_record_track_distance, horse_sex, horse_trainer, horse_weight, id, meeting_date, race_number, race_prizemoney, start_time, track, weight_restrictions
+"POST /testing/ HTTP/1.1" 500 145

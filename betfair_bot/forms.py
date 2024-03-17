@@ -10,6 +10,6 @@ class PlaceBetForm(forms.Form):
     ])
 
 class TestingForm(forms.Form):
-    barrier_number = forms.IntegerField(label='Barrier Number')
+    horse_barrier = forms.IntegerField(label='Horse Barrier')
     track_conditions = forms.ChoiceField(label='Track Conditions', choices=[('good', 'Good'), ('soft', 'Soft'), ('heavy', 'Heavy')])
     odds_range = forms.CharField(label='Odds Range', help_text='Enter the odds range in the format: min-max')   # Add other form fields as needed

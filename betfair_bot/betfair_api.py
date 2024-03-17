@@ -17,8 +17,7 @@ class BetfairAPI:
         self.password = os.getenv("BETFAIR_PASSWORD")
         self.app_key = os.getenv("BETFAIR_APP_KEY")
         self.cert_path = os.getenv("BETFAIR_CERT_PATH")
-        self.key_path = os.getenv("BETFAIR_KEY_PATH")
-        self.client = self.initialize_api_client()
+        self.client = None
         self.logger = logging.getLogger(__name__)
 
     def initialize_api_client(self) -> APIClient:
@@ -26,14 +25,14 @@ class BetfairAPI:
         Initialize the Betfair API client.
         """
         try:
-            client = APIClient(
+            self.client = APIClient(
                 self.username,
                 self.password,
                 app_key=self.app_key,
-                cert_files=(self.cert_path, self.key_path)
+                certs=self.cert_path
             )
-            client.login()
-            return client
+            self.client.login()
+            return self.client
         except Exception as e:
             self.logger.error(f"Error initializing Betfair API client: {str(e)}")
             raise
@@ -89,6 +88,7 @@ class BetfairAPI:
         Close the Betfair API client connection.
         """
         try:
-            self.client.logout()
+            if self.client:
+                self.client.logout()
         except Exception as e:
             self.logger.error(f"Error closing Betfair API client connection: {str(e)}")

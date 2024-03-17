@@ -12,30 +12,25 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
-import environ
-from cryptography.fernet import Fernet
 from dotenv import load_dotenv
-load_dotenv()
+from cryptography.fernet import Fernet
 
-# Initialize environment variables
-env = environ.Env()
-environ.Env.read_env()
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@(ike5t23q*)ya0w)*q-!=6*-!z&bd4$r8^)tfjf@d$j)7u+$5'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1').split(',')
 
 # Application definition
 
@@ -80,19 +75,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'betfair_bot.wsgi.application'
 
-
 # Database
+# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASSWORD'),
-        'HOST': env('DATABASE_HOST'),
-        'PORT': env('DATABASE_PORT'),
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': os.getenv('DATABASE_PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -112,7 +107,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -124,28 +118,25 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
+# https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
-# Add this if it's not in your settings.py file
-# This is the list of directories where Django will look for additional static files
-# besides the static directory of each app installed.
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Logging configuration
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
         'file': {
             'level': 'ERROR',
             'class': 'logging.FileHandler',
@@ -154,18 +145,23 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['file'],
-            'level': 'ERROR',
+            'handlers': ['console', 'file'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
             'propagate': True,
         },
     },
 }
+
+# Authentication settings
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+# Encryption key
 ENCRYPTION_KEY = Fernet.generate_key().decode()
 
-CERTS_DIR = os.getenv('CERTS_DIR')
-BETFAIR_CERT_FILE = os.getenv('BETFAIR_CERT_FILE')
-BETFAIR_KEY_FILE = os.getenv('BETFAIR_KEY_FILE')
+# Betfair API credentials
+BETFAIR_USERNAME = os.getenv('BETFAIR_USERNAME')
+BETFAIR_PASSWORD = os.getenv('BETFAIR_PASSWORD')
+BETFAIR_APP_KEY = os.getenv('BETFAIR_APP_KEY')
+BETFAIR_CERTS_PATH = os.getenv('BETFAIR_CERTS_PATH')
