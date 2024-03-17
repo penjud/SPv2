@@ -86,13 +86,15 @@ def testing_view(request):
         form = TestingForm(request.POST)
         if form.is_valid():
             country_code = form.cleaned_data.get('country_code')
-            horse_barrier = form.cleaned_data.get('horse_barrier')
             meeting_date = form.cleaned_data.get('meeting_date')
+            horse_barrier = form.cleaned_data.get('horse_barrier')
+            
 
             historical_data = BetfairData.objects.filter(
                 country_code=country_code,
-                barrier_number=horse_barrier,  # Assuming this is the correct field name
-                meeting_date=meeting_date
+                meeting_date=meeting_date,
+                horse_barrier=horse_barrier,  # Assuming this is the correct field name
+                
             )
 
             context = {
@@ -100,7 +102,7 @@ def testing_view(request):
                 'historical_data': historical_data,
             }
 
-            logger.debug(f"Filtering with country_code={country_code}, horse_barrier={horse_barrier}, meeting_date={meeting_date}")
+            logger.debug(f"Filtering with country_code={country_code}, meeting_date={meeting_date}, horse_barrier={horse_barrier}")
             return render(request, 'bot/testing.html', context)
     else:
         form = TestingForm()  # or PlaceBetForm() based on what you want to display initially
