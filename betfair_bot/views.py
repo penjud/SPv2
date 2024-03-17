@@ -8,15 +8,66 @@ from betfairlightweight.exceptions import APIError
 import os
 import logging
 from django.core.paginator import Paginator
+import requests
 import betfair_bot
 from betfair_bot.models import Bet
 from bot.bot_logic import MartingaleStrategy, ValueBettingStrategy
 from betfair_bot.models import BetfairData
 from .forms import TestingForm
-
+from .models import BetfairData
+from django.conf import settings
+from decouple import config
+import logging
+from decouple import config
+from django import forms
 # Create a logger
 logger = logging.getLogger(__name__)
 
+# Load the Betfair API key from the .env file
+BETFAIR_API_KEY = config('BETFAIR_API_KEY')
+
+class APIClient:
+    class Betting:
+        def __init__(self, app_key, session_token):
+            self.base_url = 'https://identitysso.betfair.com.au/api/login'
+            self.app_key = app_key
+            self.session_token = session_token
+
+        def list_market_catalogue(self, filter, market_projection, max_results):
+            url = f"{self.base_url}listMarketCatalogue/"
+            headers = {
+                'X-Application': self.app_key,
+                'X-Authentication': self.session_token,
+                'Content-Type': 'application/json'
+            }
+            
+            payload = {
+                'filter': filter,
+                'marketProjection': market_projection,
+                'maxResults': str(max_results)
+            }
+
+            response = requests.post(url, headers=headers, json=payload)
+            if response.status_code == 200:
+                return response.json()
+            else:
+                # Handle error appropriately
+                raise Exception(f"API request failed with status {response.status_code}: {response.text}")
+
+
+    def login(self):
+        try:
+            # Your login logic here
+            response = requests.post('https://identitysso.betfair.com.au/api/login', data={...}, cert=self.certs)
+            if response.status_code == 200:
+                # Process the successful login
+                return {'success': True, 'message': 'Logged in successfully'}
+            else:
+                # Handle HTTP errors
+                return {'success': False, 'message': f'Login failed with status code {response.status_code}'}
+        except requests.RequestException as e:
+            # Handle exceptions related to the request
+            return {'success': False, 'message': f'Login exception occurred: {e}'}
 # Example form class for placing a bet
 class PlaceBetForm(forms.Form):
     bet_amount = forms.DecimalField(min_value=0.01)
@@ -24,44 +75,119 @@ class PlaceBetForm(forms.Form):
 
 @login_required
 def home(request):
-    # Context to pass to the template
+    api_client = APIClient(
+        username=os.getenv('BETFAIR_USERNAME'),
+        password=os.getenv('BETFAIR_PASSWORD'),
+        app_key=os.getenv('BETFAIR_APP_KEY'),
+        certs=os.getenv('BETFAIR_CERTS_PATH')
+    )
+    
+    # Log in to the Betfair API
+    login_result = api_client.login()
+
+    if not login_result['success']:
+        print(login_result['message'])  # Log the error message or handle it as needed
+    # Assuming 'market_filter' is correctly defined and imported somewhere above
+        
+    market_data = api_client.betting.list_market_catalogue(
+        filter=market_filter(text_query='horse racing'),
+        market_projection=['MARKET_START_TIME', 'RUNNER_DESCRIPTION'],
+        max_results=10
+    )
+
+    # Log out from the Betfair API
+    def check_betfair_api_connection():
+        # Add your code here to check the API connection
+        pass
+
+    api_client.logout()
+
+    is_api_connected = check_betfair_api_connection()  # This should actually check the API connection
+
     context = {
-        'welcome_message': 'Welcome to our betting bot!',
+        'api_connected': is_api_connected,
+        'welcome_message': 'Welcome to SickPunt!',
         'features': ['Automatic betting', 'Real-time statistics', 'User-friendly interface'],
+        'market_data': market_data
     }
+
     return render(request, 'bot/home.html', context)
+
+def fetch_races_from_betfair(country, venue):
+    # Example API endpoint for listing events; replace with the actual Betfair API endpoint
+    url = 'https://identitysso.betfair.com.au/api/login'
+
+    BETFAIR_API_KEY = 'your_api_key_here'
+
+    headers = {
+        'X-Application': BETFAIR_API_KEY,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
+
+    # Example filter based on country and location. Adjust the filter according to the actual API requirements.
+    # The 'location' parameter's incorporation depends on how the Betfair API utilizes it for fetching race data.
+    params = {
+        'filter': {
+            'eventTypeIds': ['7'],  # Assuming '7' is the ID for horse racing events
+            'marketCountries': [country],
+            'listvenues': [venue],
+            # The API might not directly use 'location' as a filter parameter. 
+            # You may need to first fetch available locations or venues from the API based on the country, 
+            # then use the location to filter the races further.
+        },
+        'sort': 'FIRST_TO_START',
+        'maxResults': '10'
+    }
+
+    response = requests.post(url, headers=headers, json=params)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return {'error': 'Failed to fetch data from Betfair API'}
+
+def current_races(request):
+    if request.method == 'GET' and 'country' in request.GET:
+        country = request.GET.get('country')
+        location = request.GET.get('location', '')  # Assuming location is optional or derived from country
+
+        races_data = fetch_races_from_betfair(country, location)
+
+        return render(request, 'betfair_bot/current_races.html', {'races_data': races_data})
+
+    return render(request, 'betfair_bot/current_races.html')
 
 @login_required
 def testing_view(request):
-    if request.method == 'POST':
-        form = TestingForm(request.POST)
-        if form.is_valid():
-            barrier_number = form.cleaned_data['barrier_number']
-            track_conditions = form.cleaned_data['track_conditions']
-            odds_range = form.cleaned_data['odds_range']
-            
-            # Query the historical data based on the selected criteria
-            historical_data = BetfairData.objects.filter(
-                barrier_number=barrier_number,
-                track_conditions=track_conditions,
-                odds__range=odds_range
-            )
+    # Instantiate the form with POST data if the request is POST, otherwise use an empty form
+    form = TestingForm(request.POST or None)
 
-            # Perform testing logic here
-            # ...
+    # Initialize an empty queryset for historical data
+    historical_data = BetfairData.objects.none()
 
-            context = {
-                'form': form,
-                'historical_data': historical_data,
-            }
-            return render(request, 'testing.html', context)
-    else:
-        form = TestingForm()
-    
+    # If the form has been submitted and is valid, process it
+    if request.method == 'POST' and form.is_valid():
+        # Extract cleaned data from the form
+        barrier_number = form.cleaned_data['barrier_number']
+        track_conditions = form.cleaned_data['track_conditions']
+        odds_range = form.cleaned_data['odds_range']
+
+        # Query the historical data based on the selected criteria
+        historical_data = BetfairData.objects.filter(
+            barrier_number=barrier_number,
+            track_conditions=track_conditions,
+            odds__range=odds_range
+        )
+
+        # Additional testing logic can be added here
+
+    # Render the testing page with the form and historical data (empty if the form hasn't been submitted)
     context = {
         'form': form,
+        'historical_data': historical_data,
     }
-    return render(request, 'betfair_bot/templates/bot/testing.html', {'form': form})
+    return render(request, 'bot/testing.html', context)
 
 @login_required
 def place_bet(request):

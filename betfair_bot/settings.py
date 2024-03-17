@@ -14,6 +14,8 @@ import os
 from pathlib import Path
 import environ
 from cryptography.fernet import Fernet
+from dotenv import load_dotenv
+load_dotenv()
 
 # Initialize environment variables
 env = environ.Env()
@@ -63,7 +65,7 @@ ROOT_URLCONF = 'betfair_bot.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -163,3 +165,7 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 ENCRYPTION_KEY = Fernet.generate_key().decode()
+
+CERTS_DIR = os.getenv('CERTS_DIR')
+BETFAIR_CERT_FILE = os.getenv('BETFAIR_CERT_FILE')
+BETFAIR_KEY_FILE = os.getenv('BETFAIR_KEY_FILE')

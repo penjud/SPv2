@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 
-{% extends "bot/base.html" %}
+{% extends "base.html" %}
 
 {% block content %}
 <h1>Welcome to SickPunt</h1>
 <h3>Punting for Fun & Profit</h3>
 <br>
+{% if is_api_connected %}
+        <p style="color: green;">Connected to Betfair API successfully.</p>
+    {% else %}
+        <p style="color: red;">Failed to connect to Betfair API.</p>
+    {% endif %}
+<br>
 <p>Today's market data:</p>
 <!-- Display market data here -->
+<br>
 <a href="{% url 'testing' %}">Go to Testing Page</a>
 {% endblock %}
