@@ -127,6 +127,11 @@ form = PlaceBetForm()  # Define the "form" variable
 historical_data = None  # Define the "historical_data" variable
 my_function(request, form, historical_data)
 
+def race_selection(request):
+    betfair_api = BetfairAPI()
+    races = betfair_api.get_races()  # Implement the get_races() method in the BetfairAPI class
+    return render(request, 'race_selection.html', {'races': races})
+
 @login_required
 def place_bet(request):
     if request.method == 'POST':

@@ -5,6 +5,8 @@ from betfairlightweight import APIClient
 from betfairlightweight.endpoints import betting
 from betfairlightweight.resources import MarketBook
 from dotenv import load_dotenv
+from datetime import datetime, timedelta
+from typing import List, Dict, Any
 
 load_dotenv()
 
@@ -36,6 +38,43 @@ class BetfairAPI:
         except Exception as e:
             self.logger.error(f"Error initializing Betfair API client: {str(e)}")
             raise
+class RacingAPI:
+    def get_races(self) -> List[Dict[str, Any]]:
+        try:
+            market_filter = {
+                "eventTypeIds": ["7"],  # Horse Racing
+                "marketCountries": ["GB"],  # United Kingdom
+                "marketStartTime": {
+                    "from": (datetime.utcnow() + timedelta(hours=1)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "to": (datetime.utcnow() + timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%SZ")
+                }
+            }
+            
+            market_catalogue = self.client.betting.list_market_catalogue(
+                filter=market_filter,
+                market_projection=["MARKET_START_TIME", "EVENT", "EVENT_TYPE"],
+                max_results=100
+            )
+            
+            races = []
+            for market in market_catalogue:
+                race = {
+                    "id": market.market_id,
+                    "name": market.event.name,
+                    "venue": market.event.venue,
+                    "start_time": market.market_start_time.strftime("%Y-%m-%d %H:%M:%S")
+                }
+                races.append(race)
+                
+            return races
+
+        except Exception as e:
+            # Handle the exception, for example, log it or return an empty list
+            print(f"An error occurred: {e}")
+            return []  # Returning an empty list as a placeholder
+    def retrieve_races_error(self, e):
+        self.logger.error(f"Error retrieving races: {str(e)}")
+        pass
 
     def get_market_data(self, market_id: str) -> Optional[MarketBook]:
         """

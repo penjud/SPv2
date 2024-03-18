@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Race Selection</title>
+    <!-- Add any necessary CSS stylesheets -->
+</head>
+<body>
+    <h1>Select a Race</h1>
+    <select id="race-dropdown">
+        {% for race in races %}
+            <option value="{{ race.id }}">{{ race.name }} - {{ race.venue }} - {{ race.start_time }}</option>
+        {% empty %}
+            <option value="">No races available</option>
+        {% endfor %}
+    </select>
+    <!-- Add any necessary JavaScript files -->
+</body>
+</html>
