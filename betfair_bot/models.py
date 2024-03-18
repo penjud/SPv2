@@ -269,6 +269,7 @@ def __str__(self):
 from django.db import models
 
 class BetfairData(models.Model):
+    country_code = models.CharField(max_length=100, default='UNKNOWN')
     meeting_date = models.DateField()  # Assuming 'meeting date' is always in date format
     track = models.CharField(max_length=100)
     race_number = models.IntegerField()
