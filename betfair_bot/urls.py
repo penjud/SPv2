@@ -26,5 +26,5 @@ urlpatterns = [
     path('betting-history/', views.betting_history, name='betting_history'),
     path('accounts/', include('accounts.urls')),
     path('testing/', views.testing_view, name='testing'),
-    path('race-selection/', views.race_selection, name='race_selection'),
+    path('race_selection/', views.race_selection, name='race_selection'),
 ]

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Race Selection</title>
-    <!-- Add any necessary CSS stylesheets -->
 </head>
 <body>
     <h1>Select a Race</h1>
@@ -13,14 +12,13 @@
     {% elif races %}
         <select id="race-dropdown">
             {% for race in races %}
-                <option value="{{ race.id }}">{{ race.name }} - {{ race.venue }} - {{ race.start_time }}</option>
+                <option value="{{ race.id }}">{{ race.name }} - {{ race.venue }} - {{ race.start_time }} - {{ race.competition }}</option>
             {% endfor %}
         </select>
         <script>
             document.getElementById('race-dropdown').addEventListener('change', function() {
                 const selectedRaceId = this.value;
                 if (selectedRaceId) {
-                    // Redirect to the horse selection page with the selected race ID
                     window.location.href = `/horse-selection/${selectedRaceId}/`;
                 }
             });

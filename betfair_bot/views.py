@@ -124,20 +124,20 @@ def my_view(request):
     return render(request, 'bot/testing.html', {'form': form})
 
 def race_selection(request):
-        try:
-                betfair_api = BetfairAPI()
-                client = betfair_api.initialize_api_client()
-                races = client.get_races('AU')
-                if not races:
-                        return render(request, 'bot/race_selection.html', {'races': None})
-        except Exception as e:
-                error_message = f"Error retrieving races: {str(e)}"
-                return render(request, 'bot/race_selection.html', {'error_message': error_message})
-            # Implement the get_races() method in the BetfairAPI class
-        
-        return render(request, 'bot/race_selection.html', {'races': races})
-    
+    betfair_api = BetfairAPI()
 
+    try:
+        races = betfair_api.get_races('AU')  # Pass the country code 'AU' for Australia
+        if not races:
+            return render(request, 'bot/race_selection.html', {'races': None, 'error_message': 'No races found.'})
+    except Exception as e:
+        error_message = f"Error retrieving races: {str(e)}"
+        return render(request, 'bot/race_selection.html', {'error_message': error_message})
+
+    return render(request, 'bot/race_selection.html', {'races': races})
+
+
+ 
 @login_required
 def place_bet(request):
     if request.method == 'POST':

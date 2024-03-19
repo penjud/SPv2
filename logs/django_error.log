@@ -1902,3 +1902,125 @@ Traceback (most recent call last):
     raise TemplateDoesNotExist(template_name, chain=chain)
 django.template.exceptions.TemplateDoesNotExist: race_selection.html
 "GET /race-selection/ HTTP/1.1" 500 145
+Internal Server Error: /race_selection/
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/baseclient.py", line 162, in cert
+    cert_path = os.listdir(self.certs)
+FileNotFoundError: [Errno 2] No such file or directory: '/certs'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/endpoints/login.py", line 48, in request
+    cert=self.client.cert,
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/baseclient.py", line 164, in cert
+    raise CertsError(str(e))
+betfairlightweight.exceptions.CertsError: [Errno 2] No such file or directory: '/certs'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 127, in race_selection
+    betfair_api = BetfairAPI()  # Assuming BetfairAPI class handles its initialization
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/betfair_api.py", line 62, in __init__
+    self.initialize_api_client()
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/betfair_api.py", line 75, in initialize_api_client
+    self.client.login()
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/endpoints/login.py", line 30, in __call__
+    (response, response_json, elapsed_time) = self.request(
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/endpoints/login.py", line 54, in request
+    raise APIError(None, exception=e)
+betfairlightweight.exceptions.APIError: None 
+Params: None 
+Exception: [Errno 2] No such file or directory: '/certs'
+"GET /race_selection/ HTTP/1.1" 500 145
+Internal Server Error: /race_selection/
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/baseclient.py", line 162, in cert
+    cert_path = os.listdir(self.certs)
+FileNotFoundError: [Errno 2] No such file or directory: '/certs'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/endpoints/login.py", line 48, in request
+    cert=self.client.cert,
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/baseclient.py", line 164, in cert
+    raise CertsError(str(e))
+betfairlightweight.exceptions.CertsError: [Errno 2] No such file or directory: '/certs'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 127, in race_selection
+    betfair_api = BetfairAPI()  # Assuming BetfairAPI class handles its initialization
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/betfair_api.py", line 62, in __init__
+    self.initialize_api_client()
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/betfair_api.py", line 75, in initialize_api_client
+    self.client.login()
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/endpoints/login.py", line 30, in __call__
+    (response, response_json, elapsed_time) = self.request(
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/betfairlightweight/endpoints/login.py", line 54, in request
+    raise APIError(None, exception=e)
+betfairlightweight.exceptions.APIError: None 
+Params: None 
+Exception: [Errno 2] No such file or directory: '/certs'
+"GET /race_selection/ HTTP/1.1" 500 145
+Internal Server Error: /race_selection/
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 130, in race_selection
+    races = betfair_api.get_races('AU')  # Assuming get_races is a method of BetfairAPI
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/betfair_api.py", line 17, in get_races
+    if self.client is None:
+AttributeError: 'BetfairAPI' object has no attribute 'client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 135, in race_selection
+    return render(request, 'betfair_bot/templates/bot/race_selection.html', {'error_message': error_message})
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: betfair_bot/templates/bot/race_selection.html
+"GET /race_selection/ HTTP/1.1" 500 145
+Internal Server Error: /race_selection/
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 130, in race_selection
+    races = betfair_api.get_races('AU')  # Assuming get_races is a method of BetfairAPI
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/betfair_api.py", line 17, in get_races
+    if self.client is None:
+AttributeError: 'BetfairAPI' object has no attribute 'client'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tim/VScode Projects/Sickpuntv2/betfair_bot/views.py", line 135, in race_selection
+    return render(request, 'betfair_bot/templates/bot/race_selection.html', {'error_message': error_message})
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/tim/VScode Projects/Sickpuntv2/venv/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: betfair_bot/templates/bot/race_selection.html
+"GET /race_selection/ HTTP/1.1" 500 145
