@@ -1,12 +1,11 @@
 import os
 import logging
-from typing import Optional, Dict, Any
 from betfairlightweight import APIClient
 from betfairlightweight.endpoints import betting
 from betfairlightweight.resources import MarketBook
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
-from typing import List, Dict, Any
+from typing import Optional, List, Dict, Any
 
 load_dotenv()
 
@@ -14,32 +13,11 @@ class BetfairAPI:
     """
     A class to handle Betfair API interactions.
     """
-    def __init__(self):
-        self.username = os.getenv("BETFAIR_USERNAME")
-        self.password = os.getenv("BETFAIR_PASSWORD")
-        self.app_key = os.getenv("BETFAIR_APP_KEY")
-        self.cert_path = os.getenv("BETFAIR_CERT_PATH")
-        self.client = None
-        self.logger = logging.getLogger(__name__)
-
-    def initialize_api_client(self) -> APIClient:
-        """
-        Initialize the Betfair API client.
-        """
-        try:
-            self.client = APIClient(
-                self.username,
-                self.password,
-                app_key=self.app_key,
-                certs=self.cert_path
-            )
-            self.client.login()
-            return self.client
-        except Exception as e:
-            self.logger.error(f"Error initializing Betfair API client: {str(e)}")
-            raise
-class RacingAPI:
     def get_races(self) -> List[Dict[str, Any]]:
+        if self.client is None:
+            self.logger.error("Betfair API client is not initialized.")
+            return []
+        
         try:
             market_filter = {
                 "eventTypeIds": ["7"],  # Horse Racing
@@ -72,6 +50,31 @@ class RacingAPI:
             # Handle the exception, for example, log it or return an empty list
             print(f"An error occurred: {e}")
             return []  # Returning an empty list as a placeholder
+    def __init__(self):
+        self.username = os.getenv("BETFAIR_USERNAME")
+        self.password = os.getenv("BETFAIR_PASSWORD")
+        self.app_key = os.getenv("BETFAIR_APP_KEY")
+        self.cert_path = os.getenv("BETFAIR_CERT_PATH")
+        self.client = None
+        self.logger = logging.getLogger(__name__)
+
+    def initialize_api_client(self) -> APIClient:
+        """
+        Initialize the Betfair API client.
+        """
+        try:
+            self.client = APIClient(
+                self.username,
+                self.password,
+                app_key=self.app_key,
+                certs=(self.cert_path)
+            )
+            self.client.login()
+            return self.client
+        except Exception as e:
+            self.logger.error(f"Error initializing Betfair API client: {str(e)}")
+            raise
+
     def retrieve_races_error(self, e):
         self.logger.error(f"Error retrieving races: {str(e)}")
         pass

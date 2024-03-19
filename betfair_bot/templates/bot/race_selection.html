@@ -8,13 +8,25 @@
 </head>
 <body>
     <h1>Select a Race</h1>
-    <select id="race-dropdown">
-        {% for race in races %}
-            <option value="{{ race.id }}">{{ race.name }} - {{ race.venue }} - {{ race.start_time }}</option>
-        {% empty %}
-            <option value="">No races available</option>
-        {% endfor %}
-    </select>
-    <!-- Add any necessary JavaScript files -->
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% elif races %}
+        <select id="race-dropdown">
+            {% for race in races %}
+                <option value="{{ race.id }}">{{ race.name }} - {{ race.venue }} - {{ race.start_time }}</option>
+            {% endfor %}
+        </select>
+        <script>
+            document.getElementById('race-dropdown').addEventListener('change', function() {
+                const selectedRaceId = this.value;
+                if (selectedRaceId) {
+                    // Redirect to the horse selection page with the selected race ID
+                    window.location.href = `/horse-selection/${selectedRaceId}/`;
+                }
+            });
+        </script>
+    {% else %}
+        <p>No races available.</p>
+    {% endif %}
 </body>
 </html>

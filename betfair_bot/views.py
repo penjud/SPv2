@@ -123,14 +123,20 @@ def my_view(request):
     historical_data = None  # Define the "historical_data" variable
     return render(request, 'bot/testing.html', {'form': form})
 
-form = PlaceBetForm()  # Define the "form" variable
-historical_data = None  # Define the "historical_data" variable
-my_function(request, form, historical_data)
-
 def race_selection(request):
-    betfair_api = BetfairAPI()
-    races = betfair_api.get_races()  # Implement the get_races() method in the BetfairAPI class
-    return render(request, 'race_selection.html', {'races': races})
+        try:
+                betfair_api = BetfairAPI()
+                client = betfair_api.initialize_api_client()
+                races = client.get_races('AU')
+                if not races:
+                        return render(request, 'bot/race_selection.html', {'races': None})
+        except Exception as e:
+                error_message = f"Error retrieving races: {str(e)}"
+                return render(request, 'bot/race_selection.html', {'error_message': error_message})
+            # Implement the get_races() method in the BetfairAPI class
+        
+        return render(request, 'bot/race_selection.html', {'races': races})
+    
 
 @login_required
 def place_bet(request):
